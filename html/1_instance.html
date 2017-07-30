@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<div id="app"></div>
+	
+</body>
+<script src="../vue.js"></script>
+<script>
+// 定义一个组件
+var Mycomponent =Vue.extend({
+	template:'<div>我是vue的组件实例，有看到吗？</div>'
+})
+
+var myComponentInstance = new Mycomponent();
+	console.log(myComponentInstance)
+
+
+//vm.$mount挂载到一个dom中去
+myComponentInstance.$mount('#app');
+
+// 取消挂载dom
+// myComponentInstance.$destroy('#app')
+</script>
+<script>
+	var data = {
+		a:1
+	}
+
+	var vm = new Vue({
+		data:data
+	})
+
+	//每个Vue实例都会代理其data对象里所有的属性
+	//vm.a === data.a //->true
+	
+	//改变属性的值也会影响
+	//vm.a =2
+	//data.a //-> a
+	
+	//注意，只有这些被代理的属性是响应的，如果在实例创建之后添加新的属性到实例上，它不会触发视图更新。（响应式系统）
+	
+	// ------------
+	// $watch 是一个实例方法，监视着 vue data 的变化，一有变化，都会启动
+	vm.$watch('a',(newVal,oldVal)=>{
+			console.log('a 原来的值：'+ oldVal + '新的值：' + newVal)
+	})
+</script>
+<script>
+var vm = new Vue({
+	data:{
+		a:1
+	},
+	created:function(){
+		//this 指向vm实例
+		console.log('a is'+ this.a)
+	}
+	
+})
+//vue 实例在创建时有一系列的初始化步骤，它需要建立数据观察，编译模板，创建必要的数据绑定。在吃过程中，它也将调用一些生命周期钩子，给自定义逻辑提供运行机会
+</script>
+
+</html>
