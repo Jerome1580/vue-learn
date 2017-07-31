@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+    	<span>{{ msg }}</span>
+    	<input type="text" v-model='msg'>
+    	<span>{{  * msg1 }}</span>
+    	<input type="text" v-model='msg1'>
+    </div>
+</body>
+<script src="../vue_1.0.28.js"></script>
+<script>
+	new Vue({
+		el:'#app',
+		data:{
+			msg:'this is msg',
+			msg1:'this is msg1'
+		}
+	})
+
+</script>
+
+</html>

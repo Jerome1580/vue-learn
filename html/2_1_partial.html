@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <partial name="my-partial"></partial>
+    </div>
+    <div id="box">
+        <partial v-bind:name="partialId"></partial>
+        <br>
+        <input type="text" v-model='partialId'>
+    </div>
+</body>
+<script src="../vue_1.0.28.js"></script>
+<script>
+// partial 注册局部的模板
+Vue.partial('my-partial', '<p>this is a partial! {{ msg}}</p>')
+new Vue({
+    el: '#app',
+    data: {
+        msg: '你好 我是小白'
+    }
+})
+</script>
+<script>
+Vue.partial('my-partial', '<p>this is a partial! {{ msg}}</p>')
+Vue.partial('my-box', '<p>this is a box! {{ msg}}</p>')
+new Vue({
+    el: '#box',
+    data: {
+        partialId: 'my-partial',
+        msg: '你好 我是小王'
+    }
+})
+</script>
+
+</html>
