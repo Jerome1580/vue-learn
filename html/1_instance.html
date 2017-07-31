@@ -8,7 +8,7 @@
 <div id="app"></div>
 	
 </body>
-<script src="../vue.js"></script>
+<script src="../vue_1.0.28.js"></script>
 <script>
 // 定义一个组件
 var Mycomponent =Vue.extend({
@@ -26,13 +26,15 @@ myComponentInstance.$mount('#app');
 // myComponentInstance.$destroy('#app')
 </script>
 <script>
-	var data = {
+	let data = {
 		a:1
 	}
 
-	var vm = new Vue({
+	let vm = new Vue({
 		data:data
 	})
+
+	console.log(vm)
 
 	//每个Vue实例都会代理其data对象里所有的属性
 	//vm.a === data.a //->true
@@ -49,18 +51,18 @@ myComponentInstance.$mount('#app');
 			console.log('a 原来的值：'+ oldVal + '新的值：' + newVal)
 	})
 </script>
+
 <script>
-var vm = new Vue({
+//vue 实例在创建时有一系列的初始化步骤，它需要建立数据观察，编译模板，创建必要的数据绑定。在吃过程中，它也将调用一些生命周期钩子，给自定义逻辑提供运行机会
+let vm_instance = new Vue({
 	data:{
 		a:1
 	},
-	created:function(){
-		//this 指向vm实例
-		console.log('a is'+ this.a)
-	}
+	created:()=>console.log('a is 1')
+	
 	
 })
-//vue 实例在创建时有一系列的初始化步骤，它需要建立数据观察，编译模板，创建必要的数据绑定。在吃过程中，它也将调用一些生命周期钩子，给自定义逻辑提供运行机会
+
 </script>
 
 </html>
