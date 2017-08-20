@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div v-bind:style="{color:activeColor,fontSize:fontSize + 'px','background-color':bgColor}">这是vue绑定style语法</div>
+    </div>
+    <div id="box">
+        <div v-bind:style="styleObject">这是vue绑定style语法</div>
+    </div>
+</body>
+
+</html>
+<script src="../vue_1.0.28.js"></script>
+<script>
+//启动debug模式
+
+/**
+ * 这里在view层中的color这个不会在model中找这个值
+ */
+Vue.config.debug = true
+var vm = new Vue({
+    el: '#app',
+    data: {
+        color: 'green',
+        activeColor: 'red',
+        fontSize: 30,
+        bgColor: 'yellow'
+    }
+})
+
+
+var vm1 = new Vue({
+    el: '#box',
+    data: {
+        styleObject: {
+            color: 'green',
+            fontSize: '30px',
+            backgroundColor: 'yellow'
+
+        }
+    }
+})
+</script>

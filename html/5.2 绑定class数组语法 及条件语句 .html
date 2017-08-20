@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+.static {
+    font-size: 30px;
+}
+
+.class-a {
+    color: red;
+}
+
+.class-b {
+    text-decoration: underline;
+}
+
+.class-c {
+    text-shadow: 3px 2px 7px;
+}
+
+.classB{
+     text-decoration: underline;
+}
+
+.classC{
+    text-shadow: 3px 2px 7px;
+}
+</style>
+
+<body>
+    <!-- 数组语法 -->
+    <div id="app">
+        <div v-bind:class="[classA,classB]">这是vue绑定class数组语法</div>
+    </div>
+    
+    <!-- 条件语句 -->
+     <div id="box">
+        <div v-bind:class="[classA,isB?classB :'']">这是vue绑定class条件语法</div>
+    </div>
+
+    <!-- 数组，对象语法混合使用 -->
+     <div id="test">
+        <div v-bind:class="[classA,{classB:isB,classC:isC}]">这是vue绑定class数组语法</div>
+    </div>
+</body>
+
+</html>
+<script src="../vue_1.0.28.js"></script>
+<script>
+//启动debug模式
+Vue.config.debug = true
+var vm = new Vue({
+    el: '#app',
+    data: {
+        classA: 'class-a',
+        classB: 'class-b'
+    }
+})
+
+
+var vm1 = new Vue({
+    el: '#box',
+    data: {
+        classA: 'class-a',
+        classB: 'class-b',
+        isB:false
+    }
+})
+
+var vm2 = new Vue({
+    el: '#test',
+    data: {
+        classA: 'class-a',
+        classB:'yellow',
+        isB:true,
+        isC:true,
+    }
+})
+/**
+ * 这里第三个例子中的classB 不会从view层到model层找，它在view层就是key值不会到model找，只会找isB
+ */
+
+</script>

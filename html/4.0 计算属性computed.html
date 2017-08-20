@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">{{fullName}}</div>
+</body>
+
+</html>
+<script src="../vue_1.0.28.js"></script>
+<script>
+ var vm = new Vue({
+ 	el:'#app',
+ 	data:{
+ 		firstName:'rao',
+ 		lastName:'ju'
+ 	},
+ 	computed:{
+ 		fullName:function(){
+ 			return this.firstName + ' ' + this.lastName
+ 		} 
+ 	}
+ })
+</script>
+<script>
+/**
+ * 两者是同样的效果，用计算属性更好，而不是用命令式的$watch回调。
+ */
+
+/*var vm = new Vue({
+    el: '#app',
+    data: {
+        firstName: 'rao',
+        lastName: 'ju',
+        fullName: 'rao ju',
+    }
+})
+
+vm.$watch('firstName', function(val) {
+    this.fullName = val + ' ' + this.lastName;
+})
+
+vm.$watch('lastName', function(val) {
+    this.fullName = this.firstName + ' ' + val;
+})*/
+</script>
+<script>
+/**
+ * es6
+ */
+
+/*var vm = new Vue({
+    el: '#app',
+    data: {
+        firstName: 'rao',
+        lastName: 'ju',
+        fullName: 'rao ju',
+    }
+})
+
+vm.$watch('firstName', (val) => vm.fullName = val + ' ' + vm.lastName )
+
+vm.$watch('lastName', (val) =>  vm.fullName = vm.firstName + ' ' + val)*/
+</script>

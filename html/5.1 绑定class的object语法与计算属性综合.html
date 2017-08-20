@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+.classA {
+    font-size: 30px;
+}
+
+.classB {
+    color: red;
+}
+
+.classC {
+    text-decoration: underline;
+}
+</style>
+
+<body>
+    <div id="app">
+         <div class="static" v-bind:class="ccgo">这是vue绑定classObject与计算属性综合案例</div>
+    </div>
+</body>
+
+</html>
+<script src="../vue_1.0.28.js"></script>
+<script>
+//启动debug模式
+Vue.config.debug = true
+var vm = new Vue({
+    el: '#app',
+    data: {
+        cc:['A','C'],
+        b:true
+    },
+    computed:{
+        ccgo:function(){
+            return {
+                classA:this.cc.indexOf('A') > -1,
+                classB:this.b,
+                classC:this.cc.indexOf('C') > -1,
+            }
+        }
+    }
+})
+
+
+</script>

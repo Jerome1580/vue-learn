@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div v-for="(index,item) in items">
+            <div>
+                <span>{{ item.name}}</span>
+                <input type="text" v-model = "item.value" lazy number>
+            </div>
+        </div>
+        计算后结果:{{ total }}
+    </div>
+</body>
+<!-- lazy 表示数据填充完，离开表单后再去计算的  number表示只能输入数字//但好像不起效 -->
+<!-- input 中v-model表示绑定数据层，可以实现双向绑定 -->
+</html>
+<script src="../vue_1.0.28.js"></script>
+<script>
+//启动debug模式
+ Vue.config.debug = true
+ var vm = new Vue({
+    el:'#app',
+    data:{
+        items:[
+            {name:'安全手套',value:100},
+            {name:'手电筒',value:100},
+            {name:'雨鞋',value:100},
+        ]
+    },
+    computed:{
+        total:function(){
+            self = this;
+            var sum = 0 ;
+            for(var i=0;i<self.items.length;i++){
+                sum += self.items[i].value;
+            }
+            return sum;
+
+        }
+    }
+ })
+
+</script>

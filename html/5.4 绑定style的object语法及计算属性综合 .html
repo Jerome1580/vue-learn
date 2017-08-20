@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div v-bind:style="ccgo">这是vue绑定style语法计算属性</div>
+    </div>
+</body>
+
+</html>
+<script src="../vue_1.0.28.js"></script>
+<script>
+//启动debug模式
+
+/**
+ * 这里在view层中的color这个不会在model中找这个值
+ */
+Vue.config.debug = true
+var vm = new Vue({
+    el: '#app',
+    data: {
+        styleObject1: {
+            color: 'green',
+            fontSize: '30px',
+            backgroundColor: 'yellow',
+            transform:'rotate(3deg)'
+        },
+        styleObject2: {
+            color: 'red',
+            fontSize: '30px',
+            backgroundColor: 'yellow'
+        },
+        itemA: 10000,
+        itemB: 1000
+    },
+    computed: {
+        ccgo: function() {
+            if (this.itemA > this.itemB) {
+                return this.styleObject1
+            } else {
+                return this.styleObject2
+            }
+        }
+    }
+})
+</script>
