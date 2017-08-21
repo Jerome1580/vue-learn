@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+      <template v-if="ok">
+            <h1>title</h1>
+            <h1>parge</h1>
+            <h1>par2</h1>
+      </template>
+       <template v-if="ok1">
+            <h1>title</h1>
+            <h1>parge</h1>
+            <h1>par2</h1>
+      </template>
+    </div>
+</body>
+
+</html>
+<script src="../vue_1.0.28.js"></script>
+<script>
+//启动debug模式
+
+Vue.config.debug = true
+var vm = new Vue({
+    el: '#app',
+    data: {
+       ok:true,
+       ok1:false
+    }
+})
+
+/**
+ * v-show 不能与template结合使用
+ * v-show 只是单句使用，控制元素的display
+ * v-if 不能嵌套
+ */
+</script>
