@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <template v-if="ok">
+            <div>成功显示div</div>
+            <p>显示成功p</p>
+        </template>
+        <div v-if="ok">这是vue条件渲染预计</div>
+        <p v-else>这是vue条件渲染else else的东西</p>
+        <div v-show="show_Boolean">show的东西</div>
+        <div v-else>show的else else东西</div>
+    </div>
+</body>
+
+</html>
+<script src="../vue_1.0.28.js"></script>
+<script>
+//启动debug模式
+
+Vue.config.debug = true
+var vm = new Vue({
+    el: '#app',
+    data: {
+        ok:false,
+        show_Boolean:false
+    }
+})
+</script>

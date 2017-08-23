@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <button v-on:click="greet">这是点击触发事件</button>
+    </div>
+   
+   <div id="box">
+        <button v-on:click="say('hi',$event)">这是点击触发事件</button>
+    </div>
+</body>
+
+</html>
+<script src="../vue_1.0.28.js"></script>
+<script>
+//启动debug模式
+
+Vue.config.debug = true
+var vm = new Vue({
+    el: '#app',
+    data: {
+        name:'vue js love'
+    },
+    methods:{
+        greet:function(e){
+            alert(this.name)
+            alert(e.target.tagName)
+        }
+    }
+})
+
+var vm1 = new Vue({
+    el: '#box',
+    data: {
+        name:'vue js love'
+    },
+    methods:{
+        say:function(str,evt){
+            alert(str + evt.target.tagName)
+        }
+    }
+})
+
+</script>
