@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+<div id="app">
+<input type="text" v-model="name">
+  <ul>
+        <li v-for="item in items | filterBy name in 'name' | orderBy 'name' ">
+            <p>
+                <span>{{ $index}}</span>
+                <span>{{ item }}</span>
+            </p>
+        </li>
+    </ul>
+</div>
+    
+</body>
+
+</html>
+<script src="../vue_1.0.28.js"></script>
+<script>
+//启动debug模式
+
+Vue.config.debug = true
+var vm = new Vue({
+    el: '#app',
+    data: {
+        name:'',
+        items:[
+            'jackChen',
+            'mark',
+            'lixiaolong',
+            'cc',
+            'zhugeliang',
+            'zhouyu',
+            'machao',
+        ]
+    }
+})
+
+
+</script>

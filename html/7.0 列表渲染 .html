@@ -18,7 +18,15 @@
             <p>{{ item.sex }}</p>
         </li>
     </ul>
-   
+    <ul id="box">
+        <li v-for="(key,value) in objects">
+            <p>
+                <!-- <span>{{$key}}</span> -->
+                <span>{{ key}}</span>
+                <span>{{ value}}</span>
+            </p>
+        </li>
+    </ul>
 </body>
 
 </html>
@@ -30,11 +38,31 @@ Vue.config.debug = true
 var vm = new Vue({
     el: '#app',
     data: {
-        items:[
-            {name:'zhangshan',age:19,sex:'Men'},
-            {name:'lisi',age:52,sex:'Men'},
-            {name:'wangwu',age:36,sex:'Women'},
-        ]
+        items: [{
+            name: 'zhangshan',
+            age: 19,
+            sex: 'Men'
+        }, {
+            name: 'lisi',
+            age: 52,
+            sex: 'Men'
+        }, {
+            name: 'wangwu',
+            age: 36,
+            sex: 'Women'
+        }, ]
+    }
+})
+
+var vm1 = new Vue({
+    el: '#box',
+    data: {
+        objects: {
+            name: '你好',
+            age: 800,
+
+        }
+
     }
 })
 </script>

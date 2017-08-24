@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul id="app">
+        <li v-for="item in filter1">
+            <p>
+                <span>{{ $index}}</span>
+                <span>{{ item }}</span>
+            </p>
+        </li>
+    </ul>
+
+    
+   
+</body>
+
+</html>
+<script src="../vue_1.0.28.js"></script>
+<script>
+//启动debug模式
+
+Vue.config.debug = true
+var vm = new Vue({
+    el: '#app',
+    data: {
+        items:[
+            'jackChen',
+            'mark',
+            'lixiaolong',
+            'cc',
+            'zhugeliang',
+            'zhouyu',
+            'machao',
+        ]
+    },
+    computed:{
+        filter1:function(){
+            self = this;
+            var arr =[];
+            for (var i = 0; i < self.items.length; i++) {
+                self.items[i].length > 4?arr.push(self.items[i]):'';
+            }
+            return arr;
+        }
+    }
+})
+
+
+</script>
