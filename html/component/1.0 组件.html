@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <my-component></my-component>
+    </div>
+</body>
+<script src="../../vue_1.0.28.js"></script>
+<script>
+/*Vue.config.debug = true;
+// 定义一个组件
+var Mycomponent = Vue.extend({
+    template: '<div>我是vue的组件实例，有看到吗？</div>'
+})
+
+Vue.component('my-component', Mycomponent)
+
+
+new Vue({
+    el: '#app'
+})*/
+</script>
+<script>
+var Child = Vue.extend({
+    template: '<div>我是子组件</div>'
+})
+
+var Parent = Vue.extend({
+	template:'<div>父组件父组件父组件</div>',
+	components:{
+		'my-component':Child
+	}
+})
+
+new Vue({
+	el:'#app'
+})
+
+
+
+
+</script>
+
+</html>

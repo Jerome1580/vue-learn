@@ -7,19 +7,27 @@
 </head>
 
 <body>
-<div id="app">
-<input type="text" v-model="name">
-  <ul>
-        <li v-for="item in items | filterBy name in 'name' | orderBy 'name' ">
-            <p>
-                <span>{{ $index}}</span>
-                <span>{{ item }}</span>
-            </p>
-        </li>
-    </ul>
-</div>
-    
+    <div id="app">
+        <input type="text" v-model="name">
+        <ul>
+            <li v-for="item in items | filterBy name">
+                <p>
+                    <span>{{ $index}}</span>
+                    <span>{{ item }}</span>
+                </p>
+            </li>
+        </ul>
+    </div>
 </body>
+
+<div id="filter-by-example">
+  <input v-model="name">
+  <ul>
+    <li v-for="user in users | filterBy name in 'name'">
+      {{ user.name }}
+    </li>
+  </ul>
+</div>
 
 </html>
 <script src="../vue_1.0.28.js"></script>
@@ -28,10 +36,11 @@
 
 Vue.config.debug = true
 var vm = new Vue({
+
     el: '#app',
     data: {
         name:'',
-        items:[
+        items: [
             'jackChen',
             'mark',
             'lixiaolong',
@@ -43,5 +52,15 @@ var vm = new Vue({
     }
 })
 
-
+new Vue({
+  el: '#filter-by-example',
+  data: {
+    name: '',
+    users: [
+      { name: 'Bruce' },
+      { name: 'Chuck' },
+      { name: 'Jackie' }
+    ]
+  }
+})
 </script>

@@ -36,6 +36,7 @@ var vm = new Vue({
     }
 })
 
+//内联语句处理器中访问原生 DOM 事件。可以用特殊变量 $event
 var vm1 = new Vue({
     el: '#box',
     data: {
@@ -47,5 +48,9 @@ var vm1 = new Vue({
         }
     }
 })
+
+//事件修饰符 <a v-on:click.stop="doThis"></a>   <form v-on:submit.prevent="onSubmit"></form>
+//事件侦听器时使用 capture 模式 <div v-on:click.capture="doThis">...</div>
+//事件在该元素本身（而不是子元素）触发时 <div v-on:click.self="doThat">...</div>
 
 </script>
