@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <pre>
+            这是vuejs的组件的模式
+        </pre>
+        <hr>
+        <table>
+            <tr is="my-component1"></tr>
+            <tr is="my-component2"></tr>
+        </table>
+        <hr>
+        <!-- 输入框 -->
+        <input is="input1" type="text" v-model="input1">{{input1}}
+        <hr>
+        <!-- 多选框 -->
+        <textarea is="textarea1" v-model="textarea1"></textarea>{{textarea1}}
+        <hr>
+        <!-- 复选框 -->
+        <input is="checkBox1" v-model="checkBox1">{{checkBox1}}
+        <input is="checkBox2" v-model="checkBox2">{{checkBox2}}
+        <hr>
+        <!-- 单选框 -->
+        <input is="radio_sex1" name="sex" v-model="radio_sex">
+        <input is="radio_sex2" name="sex" v-model="radio_sex">{{radio_sex}}
+        <hr>
+        <!-- 下拉框 -->
+        <select is="select1" v-model="select1"></select>{{select1}}
+    </div>
+</body>
+<script src="../../../vue_1.0.28.js"></script>
+<script>
+Vue.config.debug = true;
+var tr1 = Vue.extend({
+    template: '<tr><td>项目1</td><td>{{a}}</td></tr>',
+    data: function() {
+        return {
+            a: '学vue 还蛮开心的'
+        }
+    }
+})
+
+var tr2 = Vue.extend({
+    template: '<tr><td>项目2</td><td>{{a}}</td></tr>',
+    data: function() {
+        return {
+            a: '每个组件的作用域都是独立的'
+        }
+    }
+})
+
+var input1 = Vue.extend({
+    template:'<input type="text" value="肉包" id="input1" name="input1" lazy>'
+})
+
+var textarea1 = Vue.extend({
+    template:' <textarea name="" id="" cols="30" rows="10"></textarea>'
+})
+
+var checkBox_bike = Vue.extend({
+    template:' <input type="checkbox" name="bike">'
+})
+
+var checkBox_car = Vue.extend({
+    template:' <input type="checkbox" name="car">'
+})
+
+var radio_sex1 = Vue.extend({
+    template:' <input type="radio" checked value="男">'
+})
+
+var radio_sex2 = Vue.extend({
+    template:' <input type="radio"  value="女">'
+})
+
+var select1 = Vue.extend({
+    template:' <select><option value="1" selected>A</option><option value="2">B</option><option value="3">C</option></select>'
+})
+
+var vm = new Vue({
+    el: '#app',
+    components: {
+        'my-component1': tr1,
+        'my-component2': tr2,
+        'input1':input1,
+        'textarea1':textarea1,
+        'checkBox1':checkBox_bike,
+        'checkBox2':checkBox_car,
+        'radio_sex1':radio_sex1,
+        'radio_sex2':radio_sex2,
+        'select1':select1,
+
+    },
+    data:{
+        'input1':'',
+        'textarea1':'',
+        'checkBox1':true,
+        'checkBox2':'',
+        'radio_sex':'',
+        'select1':'',
+    }
+})
+</script>
+
+</html>
