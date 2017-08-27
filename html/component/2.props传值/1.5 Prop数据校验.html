@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        1.
+        <input v-model="parentMsg">
+        <br> 2.
+        <example
+            :prop-a="100" 
+            prop-b="100" 
+            :prop-c="" 
+            :prop-d="" 
+            :prop-e.sync="parentMsg" 
+            :prop-f="13" 
+            :prop-g="100" 
+            prop-h="100" 
+            prop-m="100"
+        ></example>
+    </div>
+    <template id="pp">
+        <ul>
+            <li>propA:{{ propA+1}}</li>
+            <li>propB:{{ propB+1}}</li>
+            <li>propC:{{ propC+1}}</li>
+            <li>propD:<pre>{{ propD | json}}</pre></li>
+            <li>propE:{{ propE+1}}</li>
+            <li>propF:{{ propF+1}}</li>
+            <li>propG:{{ propG+1}}</li>
+            <li>propH:{{ propH+1}} <pre>{{ propH | json}}</pre></li>
+            <li>propM:{{ propM+1}}</li>
+        </ul>
+    </template>
+</body>
+<script src="../../../vue_1.0.28.js"></script>
+<script>
+Vue.config.debug = true;
+
+Vue.component('example', {
+    props: {
+        //基础类型检测{`null`意思是任何类型都可以}
+        propA:Number,
+        //多种类型
+        propM:[String,Number],
+        //必须且是字符串
+        propB:{
+            type:String,
+            required:true
+        },
+        //数字，有默认值
+        propC:{
+            type:Number,
+            default:100
+        },
+        //对象/数组的默认值应当由一个函数返回
+        propD:{
+            type:Object,
+            default:function(){
+                return {
+                    msg:'hello'
+                }
+            }
+        },
+        //指定这个prop为双向绑定
+        //如果绑定类型不对将抛出一条警告
+        propE:{
+            twoWay:true
+        },
+        //自定义验证函数
+        propF:{
+            validator:function(value){
+                return value >10
+            }
+        },
+        //转换函数
+        //在设置值之前转换值
+        propG:{
+            coerce:function(val){
+                return val +'' //将值转化为字符串
+            }
+        },
+        //多种类型
+        propF:{
+            coerce:function(val){
+                return JSON.parse(val) //将JSON字符串转化为对象
+            }
+        },
+    },
+    template: '#pp'
+})
+
+
+
+var vm = new Vue({
+    el: '#app',
+    data: {
+        parentMsg: 'roubao'
+    }
+
+
+})
+</script>
+
+</html>
