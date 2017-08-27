@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <pre>
+        使用props传输资料给子组件
+    </pre>
+    <div id="app">
+        <child msg="hello!"></child>
+    </div>
+</body>
+<script src="../../../vue_1.0.28.js"></script>
+<script>
+Vue.config.debug = true;
+
+Vue.component('child',{
+    props:['msg'],
+    template:'<span>{{msg}}</span>',
+    //会使用父组件中传进来的props中的值，data中不会用，报错
+    data:function(){
+        return {
+            msg:'roubao'
+        }
+    }
+})
+
+var vm = new Vue({
+    el: '#app'
+
+})
+</script>
+
+</html>

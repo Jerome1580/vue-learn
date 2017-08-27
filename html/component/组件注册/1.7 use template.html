@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <pre>
+            这是vuejs使用use template的实例
+        </pre>
+    <div id="app">
+    </div>
+    <template id="template1">
+        <div>
+            <h2>{{ title }}</h2>
+            <label for="username">Name:</label>
+            <input id="username" v-model="user.name">
+            <label for="useremail">Email:</label>
+            <input id="useremail" v-model="user.email">
+            <button v-on:click="save">Submit</button>{{tmp1}}
+            <br> {{user.name}}
+            <br> {{user.email}}
+            <br>
+        </div>
+    </template>
+</body>
+<script src="../../../vue_1.0.28.js"></script>
+<script>
+Vue.config.debug = true;
+/**
+ * template 不能在table中使用！！！！！！！！！！
+ * 可以用tbody代替
+ * 
+ */
+
+var vm = new Vue({
+    el: '#app',
+    template: '#template1',
+    data: {
+        title: '使用者登录',
+        user: {
+            name: 'roubao',
+            email: 'raoju1580@qq.com'
+        },
+        tmp1: ''
+    },
+    methods: {
+        save: function() {
+            this.tmp1 = 'clicked'
+        }
+    }
+})
+</script>
+
+</html>

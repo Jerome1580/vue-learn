@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+  
+        <pre>
+            这是vuejs的组件的模式
+        </pre>
+        <my-component></my-component>
+        <my-component></my-component>
+        <my-component></my-component>
+        
+    </div>
+</body>
+<script src="../../../vue_1.0.28.js"></script>
+<script>
+Vue.config.debug = true;
+
+var Child = Vue.extend({
+    template:'<div>{{a}}</div>',
+    data:()=>{
+        return {a:'这是子组件'}
+    }
+})
+/**
+ * data functions should return an object
+ * return 必须return一个对象
+ */
+
+var br = Vue.extend({
+    template:'<br>'
+})
+
+
+var Parent = Vue.extend({
+    template:'<div>{{a}}<my-child></my-child><my-br></my-br></div>',
+    data:()=>{
+         return {a:'这是父组件'}
+    },
+    components:{
+        'my-child':Child,
+        'my-br':br
+    }
+})
+
+var vm = new Vue({
+    el:"#app",
+    components:{
+        'my-component':Parent
+    }
+})
+
+/**
+ * 注册语法糖
+ * 可以在父组件中直接component传入选项对象，而不是构造器给Vue.component（）和component选项
+ * var Parent = Vue.extend({
+    template:'<div><my-child></my-child></div>',
+    components:{
+        'my-child':{
+            template:'<div>这是子组件</div>'
+        },
+        
+    }
+})
+ */
+
+</script>
+
+</html>

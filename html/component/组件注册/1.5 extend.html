@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <pre>
+            这是vuejs的组件的模式
+        </pre> {{a}}
+    </div>
+</body>
+<script src="../../../vue_1.0.28.js"></script>
+<script>
+Vue.config.debug = true;
+/**
+ * 传入Vue构造器的多数选项也可以在Vue.extend（）中，不过两个特例：data和el，必须以function形式return出来
+ *
+ * el return 出一个选择器
+ * data return 必须是一个对象
+ * 
+ */
+
+var Child = Vue.extend({
+    el: () => '#app',
+    //等价于
+    //el:function(){ return '#app'}
+    data: () => {
+        return {
+            a: '这是extend'
+        }
+    }
+})
+
+
+
+var vm = new Child({})
+</script>
+
+</html>

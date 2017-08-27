@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+  
+        <pre>
+            这是vuejs的组件的模式
+        </pre>
+        <div id="replace1" class="foo"></div>
+        <div id="insert" class="foo"></div>
+        
+    </div>
+</body>
+<script src="../../../vue_1.0.28.js"></script>
+<script>
+Vue.config.debug = true;
+
+
+var vm = new Vue({
+    el:"#replace1",
+    template:'<p class="bar">replace</p>'
+})
+
+var vm2 = new Vue({
+    el:"#insert",
+    replace:false,
+    template:'<p class="bar">insert</p>'
+})
+
+
+
+</script>
+
+</html>

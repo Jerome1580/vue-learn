@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <pre>
+       动态props
+    </pre>
+    <div id="app">
+      <!--   <input type="text" v-model="parentMsg"> -->
+
+        <comp some-prop="1"></comp>
+        <!-- 传递实际的数字 -->
+        <comp :some-prop="1"></comp>
+    </div>
+   
+</body>
+<script src="../../../vue_1.0.28.js"></script>
+<script>
+Vue.config.debug = true;
+
+Vue.component('comp',{
+    props:['someProp'],
+    template:'<span>{{someProp +1}}</span>'
+})
+
+
+
+var vm = new Vue({
+    el: '#app',
+   
+
+})
+
+
+
+</script>
+
+</html>

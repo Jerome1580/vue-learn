@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+    <my-component></my-component>
+        <pre>
+            这是vuejs的组件的模式
+        </pre>
+        <my-component></my-component>
+        <my-component></my-component>
+        
+    </div>
+</body>
+<script src="../../../vue_1.0.28.js"></script>
+<script>
+Vue.config.debug = true;
+
+var myComponent = Vue.extend({
+    template: '<div>项目1{{a}}</div>',
+    data: function() {
+        return {
+            a: '学vue 还蛮开心的'
+        }
+    }
+});
+
+//全局注册组件，tag为my-component
+Vue.component('my-component',myComponent);
+
+var vm = new Vue({
+    el:"#app"
+})
+
+
+
+</script>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <pre>
+            这是vuejs使用use template的实例
+        </pre>
+    <div id="app">
+        <table>
+            <!--    <template>template 不能在table中使用！！！！！！！！！</template> -->
+            <tbody v-for="item of items">
+                <tr>
+                    <td>{{$index}}{{item.name}}</td>
+                </tr>
+            </tbody>
+        </table>
+        {{$data | json}}
+    </div>
+</body>
+<script src="../../../vue_1.0.28.js"></script>
+<script>
+Vue.config.debug = true;
+
+var vm = new Vue({
+    el: '#app',
+    data: {
+        items: [{
+            name: 'zhansan'
+        }, {
+            name: 'lisi'
+        }, {
+            name: 'wangwu'
+        }, ]
+    }
+})
+</script>
+
+</html>

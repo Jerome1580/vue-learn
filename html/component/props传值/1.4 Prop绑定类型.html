@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+     1.<input v-model="parentMsg">
+     <br>
+     2.<child :msg="parentMsg" id="box"></child>默认，单项绑定
+     <br>
+     3.<child :msg.sync="parentMsg"></child>sync双向绑定
+     <br>
+     4.<child :msg.once="parentMsg"></child>once只绑定一次
+    </div>
+   
+</body>
+<script src="../../../vue_1.0.28.js"></script>
+<script>
+Vue.config.debug = true;
+
+Vue.component('child',{
+    props:['msg'],
+    template:'<span><input v-model="msg"></span>'
+})
+
+
+
+var vm = new Vue({
+    el: '#app',
+    data:{
+        parentMsg:'roubao'
+    }
+   
+
+})
+
+
+
+</script>
+
+</html>

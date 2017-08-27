@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <pre>
+        html无法辨别大小写，js区分大小写。在js变量中有大写是，html用短横线-
+    </pre>
+    <div id="app">
+        <child my-message="hello!"></child>
+    </div>
+    <div id="app1">
+         <child1 My-message="hello1!"></child>
+    </div>
+     <div id="app2">
+         <child2 My-message-e="hello2!"></child>
+    </div>
+</body>
+<script src="../../../vue_1.0.28.js"></script>
+<script>
+Vue.config.debug = true;
+
+Vue.component('child',{
+    props:['myMessage'],
+    template:'<span>{{myMessage}}</span>'
+})
+
+
+
+var vm = new Vue({
+    el: '#app'
+
+})
+
+//----------------------
+Vue.component('child1',{
+    props:['MyMessage'],
+    template:'<span>{{MyMessage}}</span>'
+})
+
+var vm = new Vue({
+    el: '#app1'
+
+})
+
+
+//----------------------
+Vue.component('child2',{
+    props:['myMessageE'],
+    template:'<span>{{myMessageE}}</span>'
+})
+
+var vm = new Vue({
+    el: '#app2'
+
+})
+
+</script>
+
+</html>
