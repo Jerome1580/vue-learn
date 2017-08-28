@@ -21,7 +21,7 @@ Vue.config.debug = true;
 Vue.component('child',{
     props:['msg'],
     template:'<span>{{msg}}</span>',
-    //会使用父组件中传进来的props中的值，data中不会用，报错
+    //会使用父组件中传进来的props中的值，data中声明的同名msg，templat不会取值，报错
     data:function(){
         return {
             msg:'roubao'
