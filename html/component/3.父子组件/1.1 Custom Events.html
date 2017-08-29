@@ -80,7 +80,7 @@ Vue.component('component3', {
             this.$parent.$set('msg', '设定子组件完成')
         },
         'c3_do3': function() {
-            this.$root.messages.push(this, msg)
+            this.$root.messages.push(this.msg)
             this.msg = ''
         },
         'c3_do4': function() {
@@ -118,6 +118,7 @@ Vue.component('c2', {
     events: {
         'all_events': function(msg) {
             console.log('all_events c2' + msg)
+            return true
         },
         'all_events1': function(msg) {
             console.log('all_events1 c2' + msg)
@@ -129,7 +130,7 @@ Vue.component('c2', {
 //初始化父组件
 //将收到消息时将事件推入一个数组
 var Parent = new Vue({
-    el: '#component',
+    el: '#component1',
     data: {
         messages: []
     },
