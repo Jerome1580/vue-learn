@@ -8,13 +8,12 @@
 
 <body>
     <div id="app">
-    <my-component></my-component>
+        <my-component></my-component>
         <pre>
             这是vuejs的组件的模式
         </pre>
         <my-component></my-component>
         <my-component></my-component>
-        
     </div>
 </body>
 <script src="../../../vue_1.0.28.js"></script>
@@ -30,15 +29,20 @@ var myComponent = Vue.extend({
     }
 });
 
-//全局注册组件，tag为my-component
-Vue.component('my-component',myComponent);
+//全局注册组件，tag为my-component，传入一个扩展的构造器
+Vue.component('my-component', myComponent);
+
+/**
+ * 或者
+ * Vue.component('my-component',Vue.extend({  ... }))
+ *
+ * 或者，传入一个选项对象，自动调用Vue.extend
+ * Vue.component('my-component',{  ... } )
+ */
 
 var vm = new Vue({
-    el:"#app"
+    el: "#app"
 })
-
-
-
 </script>
 
 </html>
