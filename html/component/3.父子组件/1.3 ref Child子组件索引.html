@@ -6,17 +6,17 @@
     <title>Document</title>
 </head>
 <style>
-    .component3{
-        margin: 10px 10px 10px 100px;
-        display: block;
-        background-color: #ffcc66;
-    }
+.component3 {
+    margin: 10px 10px 10px 100px;
+    display: block;
+    background-color: #ffcc66;
+}
 
-    .component2{
-        background-color: yellow;
-        padding: 10px;
-        margin: 10px;
-    }
+.component2 {
+    background-color: yellow;
+    padding: 10px;
+    margin: 10px;
+}
 </style>
 
 <body>
@@ -39,7 +39,12 @@
             <input v-model="msg">
             <button v-on:click="c2_do1">c2 广播事件至根组件</button>
             <button v-on:click="c2_do2">c2 清空 $parent资料</button>
+            <button v-on:click="c2_do3">c2 eventc2 事件</button>
+            <button v-on:click="c2_do4">c2 eventc3 事件</button>
+            <button v-on:click="c2_do5">c2 eventc4 事件</button>
             <component3></component3>
+            <!-- 生成3个component3 -->
+            <component3 v-ref:list v-for="1 in 3"></component3>
         </div>
     </template>
     <!-- 根组件模板 -->
@@ -49,9 +54,9 @@
         <button v-on:click="c1_do1"> 组件 c2[0] 设置子组件的资料</button>
         <button v-on:click="c1_do2"> 组件 c2[1] 设置子组件的资料</button>
         <button v-on:click="c1_do3"> 组件 c2[2] 设置子组件的资料</button>
-        <c2></c2>
-        <c2></c2>
-        <c2></c2>
+        <c2 v-on:eventc4="handle_it2"></c2>
+        <c2 v-on:eventc2="handle_it"></c2>
+        <c2 v-on:eventc3="handle_it1"></c2>
     </div>
     <div id="app">
         <my-component></my-component>
@@ -89,6 +94,12 @@ Vue.component('component3', {
         'c3_do5': function() {
             this.$dispatch('all_events1', this.msg);
         },
+    },
+    events: {
+        'c3_events1': function(msg) {
+            this.c3_do1(); //执行 此组件的方法
+            console.log('c3_events1' + msg)
+        }
     }
 })
 
@@ -113,7 +124,16 @@ Vue.component('c2', {
         },
         'c2_do2': function() {
             this.$parent.messages = []
-        }
+        },
+        'c2_do3': function() {
+            this.$dispatch('eventc2', this.msg);
+        },
+        'c2_do4': function() {
+            this.$dispatch('eventc3', this.msg);
+        },
+        'c2_do5': function() {
+            this.$dispatch('eventc4', this.msg);
+        },
     },
     events: {
         'all_events': function(msg) {
@@ -122,7 +142,24 @@ Vue.component('c2', {
         },
         'all_events1': function(msg) {
             console.log('all_events1 c2' + msg)
-        }
+        },
+        'eventc2': function(msg) {
+            console.log('eventc2:' + msg)
+        },
+        'eventc3': function(msg) {
+            console.log('eventc3:' + msg)
+        },
+        'eventc4': function(msg) {
+            console.log('eventc4:' + msg)
+        },
+    },
+    ready() {
+        //找到当前子组件，然后执行
+        this.$refs.list[2].msg = '$refs 更改子组件 data 2'
+        this.$refs.list[1].msg = '$refs 更改子组件 data 1'
+        this.$refs.list[0].msg = '$refs 更改子组件 data 0'
+         //找到当前子组件，然后执行
+        this.$refs.list[0].$emit('c3_events1', '$ref 执行 子组件事件')
     }
 })
 
@@ -159,6 +196,18 @@ var Parent = new Vue({
         'c1_do3': function() {
             this.$children[2].msg = '组件c2[2]设置'
         },
+        'handle_it': function() {
+            console.log('Parent Handle It');
+            this.messages.push('HandleIt')
+        },
+        'handle_it1': function() {
+            console.log('Parent Handle It1');
+            this.messages.push('HandleIt1')
+        },
+        'handle_it2': function() {
+            console.log('Parent Handle It2');
+            this.messages.push('HandleIt2')
+        },
     }
 })
 
@@ -183,23 +232,22 @@ var vm = new Vue({
 
 });
 
-vm.$on('events1',function(msg){
-        console.log(msg)
+vm.$on('events1', function(msg) {
+    console.log(msg)
 })
 
-vm.$once('events1-once',function(msg){
-        console.log('once:'+msg)
+vm.$once('events1-once', function(msg) {
+    console.log('once:' + msg)
 })
 
-vm.$emit('events1','events1 do 1');
-vm.$emit('events1','events1 do 2');
-vm.$emit('events1-once','events1-once do 1');
-vm.$emit('events1-once','events1-once do 1');
-vm.$emit('events3','events3 do 1');
-vm.$emit('events3','events3 do 2');
-vm.$emit('events4','events4 do 1');
-vm.$emit('events4','events4 do 2');
-
+vm.$emit('events1', 'events1 do 1');
+vm.$emit('events1', 'events1 do 2');
+vm.$emit('events1-once', 'events1-once do 1');
+vm.$emit('events1-once', 'events1-once do 1');
+vm.$emit('events3', 'events3 do 1');
+vm.$emit('events3', 'events3 do 2');
+vm.$emit('events4', 'events4 do 1');
+vm.$emit('events4', 'events4 do 2');
 </script>
 
 </html>
