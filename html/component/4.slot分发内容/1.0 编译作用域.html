@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 最小的组件模板 -->
+    <template id="app-footer">
+        <div>{{ msg}}</div>
+    </template>
+    <!-- 子组件模板 -->
+    <template id="app-header">
+        <div>{{ msg}}</div>
+    </template>
+    <!-- 根组件模板 -->
+    <template id="app">
+        <div>{{ msg}}</div>
+        <!-- 父组件中无法得知子组件的data，此行加过是false，app-header隐藏 -->
+        <!-- 只有在父组件 app中声明data，v-show才可以访问到 -->
+        <app-header v-show="someChildProperty"></app-header>
+        <app-footer></app-footer>
+    </template>
+    <div id="vm">
+        <app></app>
+    </div>
+</body>
+<script src="../../../vue_1.0.28.js"></script>
+<script>
+Vue.config.debug = true;
+
+Vue.component('app-footer', {
+    template: '#app-footer',
+    data: function() {
+        return {
+            msg: '这是子组件的底部'
+        }
+    }
+})
+
+/**
+ * 父组件模板的内容在父组件作用域内编译；子组件模板的内容在子组件作用域内编译!!
+ */
+
+Vue.component('app-header', {
+    template: '#app-header',
+    data: function() {
+        return {
+            'msg': '这是子组件的头部',
+            'someChildProperty':true  //子组件的data，父组件无法直接使用
+        }
+    }
+})
+
+Vue.component('app', {
+    template: '#app',
+    data: function() {
+        return {
+            msg: 'hello'
+        }
+    }
+})
+
+
+
+
+var vm = new Vue({
+    el: '#vm',
+    data: {
+        msg: []
+    }
+
+})
+</script>
+
+</html>

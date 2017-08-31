@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 工程师a -->
+    <template id="multi-insertion">
+        <div>
+            <slot name="one"></slot>
+            <slot name="two"></slot>
+            <slot></slot>
+            <slot name="five"></slot>
+            <slot name="four"></slot>
+        </div>
+    </template>
+
+    <!-- 工程师b -->
+    <template id="multi-insertion1">
+        <div>
+            <slot></slot>
+            <slot name="one"></slot>
+            <slot name="two"></slot>
+            <slot></slot>
+            <slot name="five"></slot>
+            <slot name="four"></slot>
+        </div>
+    </template>
+
+    <!-- 规划主管 ，规划需要哪些功能-->
+    <template id="parent">
+        <p>A工程师</p>
+        <multi-insertion>
+            <p slot="one">1.one</p>
+            <p slot="two">2.two</p>
+            <p>3.default A</p>
+            <h4 slot="four">4.four</h4>
+            <p slot="five">5.five</p>
+            <h5>3.default A</h5>
+        </multi-insertion>
+        <hr>
+        <p>B工程师</p>
+        <multi-insertion1>
+            <p slot="one">1.one</p>
+            <p slot="two">2.two</p>
+            <p>3.default A</p>
+            <h4 slot="four">4.four</h4>
+            <p slot="five">5.five</p>
+            <h5>3.default A</h5>
+        </multi-insertion1>
+    </template>
+    <div id="vm">
+        <parent></parent>
+    </div>
+</body>
+<script src="../../../vue_1.0.28.js"></script>
+<script>
+Vue.config.debug = true;
+
+
+
+Vue.component('multi-insertion1', {
+    template: '#multi-insertion1'
+})
+
+Vue.component('multi-insertion', {
+    template: '#multi-insertion'
+})
+
+Vue.component('parent', {
+    template: '#parent'
+})
+
+
+var vm = new Vue({
+    el: '#vm',
+    data: {
+        msg: []
+    }
+
+})
+</script>
+
+</html>

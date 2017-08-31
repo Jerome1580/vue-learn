@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+  
+    <template id="app">
+        <div>{{ msg}}</div>
+        <!-- 无效，因为在父组件作用域中，只能使用父组件的data -->
+        <child-component v-show="someChildProperty"></child-component>
+        <child-component1></child-component1>
+    </template>
+    <div id="vm">
+        <app></app>
+    </div>
+</body>
+<script src="../../../vue_1.0.28.js"></script>
+<script>
+Vue.config.debug = true;
+
+Vue.component('child-component1', {
+    template: '<div v-show="someChildProperty">child1</div>',
+    data: function() {
+        return {
+            'someChildProperty':true  
+        }
+    }
+})
+
+Vue.component('child-component', {
+    template: '<div>child</div>',
+    data: function() {
+        return {
+            'someChildProperty':true  
+        }
+    }
+})
+
+Vue.component('app', {
+    template: '#app',
+    data: function() {
+        return {
+            msg: 'hello'
+        }
+    }
+})
+
+
+
+
+var vm = new Vue({
+    el: '#vm',
+    data: {
+        msg: []
+    }
+
+})
+</script>
+
+</html>

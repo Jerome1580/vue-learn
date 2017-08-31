@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 工程师，具体实现，负责将父组件的内容重新做分发 -->
+    <template id="my-component">
+        <div>
+            <h1>1.template 层</h1>
+            <h1>2.this is my car</h1>
+            <slot>
+                3. view 层中的东西填写在这里
+            </slot>
+        </div>
+    </template>
+
+    <!-- 父组件，规划主管 ，规划需要哪些功能-->
+    <div id="vm">
+        <my-component>
+            <p>4.view 层</p>
+            <p>5.this is some one</p>
+            <p>6.love me</p>
+        </my-component>
+    </div>
+</body>
+<script src="../../../vue_1.0.28.js"></script>
+<script>
+Vue.config.debug = true;
+
+
+
+Vue.component('my-component', {
+    template: '#my-component'
+})
+
+
+var vm = new Vue({
+    el: '#vm',
+    data:{
+        msg:[]
+    }
+
+})
+</script>
+
+</html>
