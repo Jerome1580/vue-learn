@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>组件和v-for</h3>
+    <div id="app">
+        <my-component v-for="item in items" :str1="item" :index="$index"></my-component>
+    </div>
+</body>
+<script src="../../../vue_1.0.28.js"></script>
+<script>
+Vue.config.debug = true;
+
+Vue.component('my-component', {
+    template: `
+                <div>
+                    index:{{index}}, props:{{str1}} ,item:{{items.c}}
+                </div>
+    `,
+    props: ['str1', 'index'], //props 来自父组件的tag传值
+    data: function() {
+        return {
+            items: {
+                a: '1', //子组件的作用域跟父组件的作用域独立不联系
+                b: '2',
+                c: '3',
+            }
+        }
+    }
+})
+
+new Vue({
+    el: '#app',
+    data: {
+        items: {
+            a: '4',
+            b: '5',
+            c: '6',
+        }
+    }
+})
+</script>
+
+</html>

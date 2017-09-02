@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    .box{
+        width: 250px;
+        border: 1px solid #9325bc;
+        padding: 10px;
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    .box:hover{
+        box-shadow: 0 0 10px #ccc;
+        border: 10px solid #9325bc;
+    }
+</style>
+
+<body>
+    <h3>组件和v-for</h3>
+    <div id="app">
+        <my-component 
+        :foo="baz" 
+        :bar="qux" 
+        @click="doThis('感谢 菜包')" 
+        @mouseover="onMouseOver('nihao')">
+            <img slot="icon" src="http://cn.vuejs.org/images/logo.png" width="200">
+            <p slot="main-text">Hello!</p>
+        </my-component>
+    
+
+
+    <my-component 
+    :foo="baz" 
+    :bar="qux" 
+    @click="doThis('感谢 菜包')" 
+    @mouseover="onMouseOver('nihao')">
+        <img slot="icon" src="http://cn.vuejs.org/images/logo.png" width="200">
+        <p slot="main-text">Hello!</p>
+    </my-component>
+   
+
+
+    <my-component 
+    :foo="baz" 
+    :bar="qux" 
+    @click="doThis('感谢 菜包')" 
+    @mouseover="onMouseOver('nihao')">
+        <img slot="icon" src="http://cn.vuejs.org/images/logo.png" width="200">
+        <p slot="main-text">Hello!</p>
+    </my-component>
+    </div>
+</body>
+<script src="../../../vue_1.0.28.js"></script>
+<script>
+Vue.config.debug = true;
+
+Vue.component('my-component', {
+    template: `
+                <div class="box">
+                <slot name="main-text"></slot>
+                <slot name="icon"></slot>
+                </div>
+    `,
+    props: ['foo', 'bar'], //props 来自父组件的tag传值
+    data: function() {
+        return {
+            items: {
+                a: '1', //子组件的作用域跟父组件的作用域独立不联系
+                b: '2',
+                c: '3',
+            }
+        }
+    }
+})
+
+new Vue({
+    el: '#app',
+    data: {
+        items: {
+            a: '4',
+            b: '5',
+            c: '6',
+        }
+    },
+    methods: {
+        'doThis': function(msg) {
+            console.log(msg)
+        },
+        'onMouseOver': function(msg) {
+            console.log(msg)
+        }
+    }
+})
+</script>
+
+</html>

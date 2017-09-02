@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+<!-- 此处为动态绑定，要加：is 才有效 -->
+<!-- 注意区分之前is绑定元素，不是动态的 -->
+    <component :is="currentView"></component>
+</body>
+<script src="../../../vue_1.0.28.js"></script>
+<script>
+Vue.config.debug = true;
+
+Vue.component('c1',{
+	template:`<div class=c1>
+			  <input v-model="a">{{a}}
+			  <button @click="m('home')">home</button>
+			  <button @click="m('posts')">posts</button>
+			  <button @click="m('archive')">archive</button>
+			  <button @click="m(str)">{{str}}</button>
+			  </div>`
+	,
+	props:['str'],
+	methods:{
+		m:function(str){
+			this.$dispatch('parent-events1',str)
+		}
+	},
+	data:function(){
+		return {
+			a:1
+		}
+	}
+})
+
+
+var vm = new Vue({
+	el:'body',
+	data:{
+		currentView:'home'
+	},
+	components:{
+		home:{
+			template:'component is home <c1 str="home"></c1>'
+		},
+		posts:{
+			template:'component is posts <c1 str="posts"></c1>'
+		},
+		archive:{
+			template:'component is archive <c1 str="archive"></c1>'
+		}
+	},
+	events:{
+		'parent-events1':function(str){
+			this.currentView = str
+		}
+	}
+})
+
+
+</script>
+
+</html>
