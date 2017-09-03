@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script>
+var o = {};
+
+	console.log(JSON.stringify(o))
+
+
+var o2 = {a:2}
+	
+	console.log(JSON.stringify(o2))
+
+	var aValue = 2;
+	Object.defineProperty(o2,'a',{
+		get:function(){
+			return aValue;
+		},
+		set:function(newValue){
+			aValue = newValue;
+		},
+		enumerable:true,
+		configurable:true
+	})
+	o2.a = 4
+		console.log(JSON.stringify(o2))
+</script>

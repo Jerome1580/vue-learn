@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+pre {
+    margin: 0;
+    padding: 0.3rem;
+    border: 1px dashed #2f6fab;
+    background-color: #f9f9f9;
+    color: black;
+    line-height: 1em;
+    font-family: verdana;
+}
+</style>
+
+<body>
+    <div id="app">
+        <h1>vm</h1>
+        <pre>a:{{ a | json 4 }}</pre>
+        <pre>b:{{ b | json 4 }}</pre>
+        <pre>c:{{ c | json 4 }}</pre>
+        <pre>d:{{ d | json 4 }}</pre>
+        <pre>e:{{ e | json 4 }}</pre>
+        <pre>someObject:{{ someObject | json 4 }}</pre>
+        <pre>ajax:{{ ajax | json 4 }}</pre>
+    </div>
+    <div id="app1">
+        <h1>vm1</h1>
+        <pre>f:{{ f | json 4 }}</pre>
+        <pre>g:{{ g | json 4 }}</pre>
+    </div>
+</body>
+
+</html>
+<script src="../../vue_1.0.28.js"></script>
+<script>
+var data = {
+    a: 1,
+    someObject: {
+        x: 10
+    },
+    ajax: {}
+}
+
+var vm = new Vue({
+    data: data,  // `vm.a`  和 `data.a ` 现在是响应的
+    el: '#app',
+    created: function() {
+        // 深拷贝，在原有的someObject的基础上，新增record
+        this.someObject = Object.assign({}, this.someObject, {
+            y: 20,
+            z: 30
+        });
+
+        //深拷贝，把a清空，新增record
+        this.a = Object.assign({}, {}, {
+            o: 20,
+            p: 30
+        });
+
+        this.$set('ajax',{'book':'肉包 喜欢 菜包','id':1230})
+        //异步data，要有预设值，并且使用set
+        
+    }// created end
+})
+
+vm.b = 2;  // `vm.b`  不是响应的，实例   ！！官网说是不会相应的，但实际情况是！！
+
+data.c = 3;  // `data.c`  不是响应的
+
+vm.$set('d',4); //实例，增加record，建议要有预设值，不让会出错
+/**
+ * vue_1.0.28.js:1141 [Vue warn]: You are setting a non-existent path "d" on a vm instance. Consider pre-initializing the property with the "data" option for more reliable reactivity and better performance.
+ */
+
+Vue.set(data,'e',5) //全局方法
+
+vm.$log();  //打印vm
+
+var vm1 = new Vue({
+	el:'#app1',
+	data:{
+		f:{},
+		g:{}
+	},
+	created:function(){
+		this.$set('f.a',80);  //异步data,要预设值，并且使用set  
+	}
+});
+
+vm1.$set('g.a',90);  //异步data,要预设值，并且使用set
+</script>

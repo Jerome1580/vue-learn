@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+pre {
+    margin: 0;
+    padding: 0.3rem;
+    border: 1px dashed #2f6fab;
+    background-color: #f9f9f9;
+    color: black;
+    line-height: 1em;
+    font-family: verdana;
+}
+</style>
+
+<body>
+    <div id="example">{{ msg }}
+        <example></example>
+    </div>
+</body>
+
+</html>
+<script src="../../vue_1.0.28.js"></script>
+<script>
+Vue.component('example', {
+    template: `<div>
+            {{ msg }} 
+            <button @click="updateMessage">{{ msg}}</button>
+            </div>`,
+    data: function() {
+        return {
+            msg: 'no update'
+        }
+    },
+    methods: {
+        'updateMessage': function() {
+            this.msg = 'updated'
+            console.log(this.$el.textContent)
+
+            //vm.$nextTick() 这个实例方法比较方便，因为它不需要全局 Vue，它的回调的 this 自动绑定到当前 Vue 实例
+            this.$nextTick(function() {
+                console.log(this.$el.textContent)
+            })
+        }
+    }
+})
+
+var vm = new Vue({
+    el: '#example',
+    data: {
+        msg: '123'
+    }
+})
+</script>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+
+<body>
+    <div id="example">
+        <h1>打开控制台，vm.example ,vm.example</h1>
+        <input type="text" v-model="msg">
+        msg:{{msg}}
+        <hr>
+        每次访问时，时间戳，缓存：{{ example }}
+        <hr>
+        每次访问时，时间戳，不缓存：{{ example1}}
+    </div>
+</body>
+
+</html>
+<script src="../../vue_1.0.28.js"></script>
+<script>
+/**
+ * 你应该注意到 Vue.js 的计算属性不是简单的 getter。计算属性持续追踪它的响应依赖。在计算一个计算属性时，Vue.js 更新它的依赖列表并缓存结果，只有当其中一个依赖发生了变化，缓存的结果才无效。因此，只要依赖不发生变化，访问计算属性会直接返回缓存的结果，而不是调用 getter。
+ */
+
+var vm = new Vue({
+    el: '#example',
+    data: {
+        msg: 'hi'
+    },
+    computed:{
+        'example':function(){
+            return Date.now() + '-' + this.msg;
+        },
+        'example1':{
+            cache:false,
+            get:function(){
+                return Date.now() + '-' + this.msg;
+            }
+        }
+        //每次调用getter 都会耗一定的时间，所以才会有缓存，不去取getter，，，个人感觉的理解
+    }
+})
+</script>
