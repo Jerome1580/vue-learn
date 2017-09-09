@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="../../lib/bootstrap.min.css">
+<script src="../../lib/jquery.min.js"></script>
+<script src="../../lib/bootstrap.min.js"></script>
+<script src="../../lib/vue_1.0.28.js"></script>
+<script src="../../lib/vue-resource.js"></script>
+
+<body>
+<div id="box">
+    <input type="text" v-model="now" @keyup="search">
+    <ul>
+        <li v-for="value in myData">{{value}}</li>
+    </ul>
+    <div v-show="myData.length == 0">暂无数据……</div>
+</div>
+</body>
+<script>
+    new Vue({
+        el: '#box',
+        data: {
+            myData: {},
+            now: '',
+        },
+        methods: {
+            search: function () {
+                var that = this;
+
+               /* this.$http.get('aa.txt').then(function (ret) {
+                    console.log(ret.data)
+                }, function (ret) {
+
+                })*/
+
+            }
+        }
+    })
+</script>
+
+</html>
