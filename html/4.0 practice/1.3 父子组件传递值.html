@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<script src="../../lib/vue_1.0.28.js"></script>
+
+<body>
+    <div id="aaa">
+        <h2>这是父组件 -> {{ msg}}</h2>
+        <input type="button" value="传递">
+        <bbb :m="msg" @child-send="get"></bbb>
+    </div>
+    <template id="child">
+        <h3>这是子组件 -> {{ childMsg }}</h3>
+        <input type="button" @click="send" value="传递">
+    </template>
+</body>
+<script>
+new Vue({
+    el: '#aaa',
+    data: {
+        msg: '这是父组件的数据'
+    },
+    methods: {
+        get(a) {
+            alert(a)
+        }
+    },
+    components: {
+        bbb: {
+            template: '#child',
+            props: {
+                m: String
+            },
+            data() {
+                return {
+                    childMsg: '这是子组件的数据'
+                }
+            },
+            methods: {
+                send() {
+                    this.$emit('child-send', this.childMsg)
+                }
+            }
+        }
+    }
+})
+</script>
+
+</html>
