@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="box">
+	<aaa></aaa>
+	<bbb></bbb>
+	<br>
+	<h2>以下是c组件的内容</h2>
+	<h4>这是A传过来的数据：<span>{{ a }}</span></h4>
+	<h4>这是B传过来的数据：<span>{{ b }}</span></h4>
+	</div>
+	
+</body>
+<script src="../vue_2.4.0.js"></script>
+<script>
+//创建一个空实例，用于管理事件触发器
+var Events = new Vue();
+
+var Aaa={
+	template:`<div>
+				<span>这是A的数据：{{ a }}
+					<input type="button" value="传递A的值" @click="send">
+				</span>
+			 </div>`,
+	data(){
+		return {
+			a:'lalala'
+		}
+	},
+	methods:{
+		send(){
+			Events.$emit('a-msg',this.a)
+		}
+	}
+}
+
+var Bbb={
+	template:`<div>
+				<span>这是B的数据：{{ a }}
+					<input type="button" value="传递B的值" @click="send">
+				</span>
+			 </div>`,
+	data(){
+		return {
+			a:'ououou'
+		}
+	},
+	methods:{
+		send(){
+			Events.$emit('b-msg',this.a)
+		}
+	}
+}
+
+ new Vue({
+ 	el:"#box",
+ 	data:{
+ 		a:'',
+ 		b:''
+ 	},
+ 	components:{
+ 		aaa:Aaa,
+ 		bbb:Bbb
+ 	},
+ 	mounted(){
+ 		Events.$on('a-msg',function(a){
+ 			this.a = a
+ 		}.bind(this));
+
+ 		Events.$on('b-msg',function(b){
+ 			this.b = b
+ 		}.bind(this));
+
+
+ 	}
+ })
+</script>
+</html>
+
