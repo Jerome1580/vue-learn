@@ -32,21 +32,47 @@
       </el-col>
     </el-row>
 
+     <!-- button -->
+     <myButton @click.native="get"></myButton>
+
+     <div>
+       {{myMessage}}
+     </div>
+
   </div>
 </template>
 
 <script>
 import Date from './components/Date.vue'
 
+import myButton from './components/Button.vue'
+import axios from 'axios'
+
 export default {
   name: 'app',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      myMessage:''
     }
   },
   components:{
-    Date
+    Date,
+    myButton
+  },
+  mounted(){
+    this.get();
+  },
+  methods:{
+    get(){
+      axios.get('https://api.github.com/users/itstrive')
+      .then(function(res){
+        this.myMessage=res.data;
+      }.bind(this))
+      .catch(function(err){
+          console.log(err);
+      })
+    }
   }
 }
 </script>
