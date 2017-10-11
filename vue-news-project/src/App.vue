@@ -1,7 +1,11 @@
 <template>
   <div id="app">
+  	<loading v-show="loading"></loading>
     <NavView v-show="headerShow"></NavView>
-    <router-view></router-view>
+    <keep-alive>
+    	<router-view class="router-view"></router-view>
+    </keep-alive>
+   
     <FooterView></FooterView>
   </div>
 </template>
@@ -13,7 +17,8 @@ import {mapGetters,mapActions} from 'vuex'
 
 	export default{
 		computed:mapGetters([
-				'headerShow'
+				'headerShow',
+				'loading'
 		]),
 		watch:{
 			$route(to,from){

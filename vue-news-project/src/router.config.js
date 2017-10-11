@@ -2,6 +2,7 @@ import Home from './components/Home.vue'
 import Follow from './components/Follow.vue'
 import Column from './components/Column.vue'
 import UserInfo from './components/UserInfo.vue'
+import Article from './components/Article.vue'
 
 export default [
 	{
@@ -19,10 +20,16 @@ export default [
 	{
 		path:'/user-info',
 		component:UserInfo
-	},{
+	},
+	{
+		path:'/article/:id',
+		component:Article
+	},
+	{
 		path:'/',
 		redirect:'/home'
-	},{
+	},
+	{
 		path:'*',
 		redirect:'/home'
 	}
