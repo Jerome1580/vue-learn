@@ -42,7 +42,7 @@
 		methods:{
 			slider(){
 				$(function (){
-					var mySwipe=new Swipe($('.banner')[0],{
+					var mySwipe = new Swipe($('.banner')[0],{
 						auto:2000,
 						continuous:true,
 						stopPropation:true,

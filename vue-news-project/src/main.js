@@ -6,6 +6,11 @@ import store from './store/'
 import axios from 'axios'
 import Loading from './components/loading/'
 
+import filters from './filters/'
+
+//Vue.filter(名字，函数)  添加自定义过滤器
+//循环定义多个过滤器
+Object.keys(filters).forEach((key)=>Vue.filter(key,filters[key]))
 
 Vue.use(VueRouter);
 Vue.use(Loading);
@@ -40,7 +45,7 @@ Vue.prototype.$http = axios; //把axios对象挂到Vue原型上
 
 const router = new VueRouter({
 	mode: 'history', //切换路径模式，变成history模式
-  	scrollBehavior: () => ({ y: 0 }), // 滚动条滚动的行为，不加这个默认就会记忆原来滚动条的位置
+  scrollBehavior: () => ({ y: 0 }), // 滚动条滚动的行为，不加这个默认就会记忆原来滚动条的位置
 	routes:routerConfig
 })
 

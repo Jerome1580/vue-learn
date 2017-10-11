@@ -9,6 +9,6 @@ import actions from './actions.js'
 export default new Vuex.Store({
 	modules:{
 		mutations
-	}
+	},
 	actions
 })
