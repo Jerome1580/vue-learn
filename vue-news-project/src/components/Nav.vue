@@ -1,5 +1,5 @@
 <template>
-	<div id="nav">
+	<div class="nav">
 		<ul>
 	    	<router-link to="/home" tag="li" active-class="active">
 	    		<a href="javascript:;">首页</a>

@@ -1,5 +1,5 @@
 <template>
-	<div id="content">
+	<div class="content">
 		<BannerView></BannerView>
 		<div class="newsList">
 	    	<ul>
