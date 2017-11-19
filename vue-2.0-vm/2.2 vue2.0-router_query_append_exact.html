@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    a.router-link-active{
+        color:#f66;
+    }
+</style>
+
+<body>
+    <div id="box">
+
+    </div>
+</body>
+
+<script src="../lib/vue_2.4.0.js"></script>
+<script src="../lib/vue-router_2.0.js"></script>
+<script>
+
+
+
+const user = {
+        template:`
+        <div>
+            <div> {{ $route.query.aaa}}</div>
+            <div> {{ $route.params.username}}</div>
+        </div>
+    `
+}
+
+const Users = {
+    template:`
+        <ul>
+            <h2>Users</h2>
+            <router-view></router-view>
+            <h2>这是底部的</h2>
+        </ul>
+    `
+}
+
+const routes =[
+    {
+        path:'/users',
+        component:Users,
+        children:[
+            {path:":username",component:user}
+        ]
+    },
+
+    {
+        path:'/'
+    }
+];
+
+const router = new VueRouter({
+    routes:routes
+})
+
+new Vue({
+    el:'#box',
+    router:router,
+    template:`
+            <div>
+                <ul>
+                    <li><router-link to="/">/</router-link></li>
+                    <li><router-link to="/users">users</router-link></li>
+                        <ol>
+                            <li><router-link :to="{path:'/users/wos',query:{aaa:'bbb'}}">wos</router-link></li>
+                             <li><router-link :to="{path:'/add'}" append>dasd</router-link></li>
+                             <li><router-link :to="{path:'/dss'}" exact>rtgvtre</router-link></li>
+                        </ol>
+                </ul>
+                <router-view></router-view>
+            </div>
+    `
+})
+</script>
+
+</html>

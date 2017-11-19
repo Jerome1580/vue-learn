@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">
+        <div>
+            <router-link to="home">主页</router-link>
+            <router-link to="user">用户</router-link>
+        </div>
+        <div>
+            <router-view></router-view>
+            <router-view name="left" style="float:left;width:50%;background-color:red;height:300px"></router-view>
+            <router-view name="right" style="float:right;width:50%;background-color:yellow;height:300px"></router-view>
+        </div>
+    </div>
+</body>
+
+<script src="../lib/vue_2.4.0.js"></script>
+<script src="../lib/vue-router_2.0.js"></script>
+<script>
+
+var Home = {
+    template:`<div>
+                 <h3>我是主页</h3>
+                 <div> {{ $route.params.num }} </div>
+              </div>`
+};
+
+
+
+var User = {
+    template:`<div>
+                 <h3>我是用户</h3>
+                 <div> {{ $route.params.num }} </div>
+              </div>`
+};
+
+var Left_nav = {
+    template:`<div>左侧导航</div>`
+};
+
+var Right_nav = {
+    template:`<div>右侧内容</div>`
+};
+
+
+
+const routes =[
+    {
+        path:'/home',
+        components:{
+            default:Home,
+            left:Left_nav,
+            right:Right_nav
+        }
+    },
+
+    {
+        path:'/user',
+        components:{
+            default:User,
+            left:Right_nav,
+            right:Left_nav
+        }
+    },
+
+
+    {path:'',redirect:'/home'},
+]
+
+const router = new VueRouter({
+    routes:routes
+})
+
+new Vue({
+    el:'#box',
+    router:router
+})
+</script>
+
+</html>

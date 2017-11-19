@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+    a.router-link-active{
+        color:#f66;
+    }
+</style>
+
+<body>
+    <div id="box">
+
+    </div>
+</body>
+
+<script src="../lib/vue_2.4.0.js"></script>
+<script src="../lib/vue-router_2.0.js"></script>
+<script>
+
+
+
+
+
+const routes =[
+    {
+        path:'/params/:aaa/:bbb'
+    },
+
+    {
+        path:'/'
+    }
+]
+
+const router = new VueRouter({
+    routes:routes
+})
+
+new Vue({
+    el:'#box',
+    router:router,
+    template:`
+            <div>
+                <ul>
+                    <li><router-link to="/">/</router-link></li>
+                    <li><router-link to="/params/111/222">/params/111/222</router-link></li>
+                    <li><router-link to="/params/333/444">/params/333/444</router-link></li>
+                    <li><router-link to="/params/555/666">/params/555/666</router-link></li>
+                </ul>
+                <pre>
+                    <code>
+                        {{ JSON.stringify($route,null,2)}}
+                    </code>
+                </pre>
+            </div>
+    `
+})
+</script>
+
+</html>
