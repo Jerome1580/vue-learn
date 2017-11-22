@@ -3,6 +3,7 @@
     <div>
        <router-link to="home">主页</router-link>
        <router-link to="news">新闻页</router-link>
+       <router-link to="transition">过渡</router-link>
     </div>
     <div>
       <router-view></router-view>
