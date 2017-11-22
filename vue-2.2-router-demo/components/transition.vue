@@ -22,10 +22,8 @@ export default {
 <style scoped>
     .fade-enter-active, .fade-leave-active{
         transition: opacity .5s;
-        color: yellow;
     }
     .fade-enter,.fade-leave{
         opacity: 0;
-        color:red;
     }
 </style>
