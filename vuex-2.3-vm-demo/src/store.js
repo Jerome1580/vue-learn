@@ -18,8 +18,14 @@ const mutations = {
     }
 }
 
+const getters = {
+    count:function(state){
+        return state.count += 200
+    }
+}
 
 export default new Vuex.Store({
     state,
-    mutations
+    mutations,
+    getters
 })

@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import {mapState,mapMutations} from 'vuex'
+import {mapState,mapMutations,mapGetters} from 'vuex'
 
 export default {
   name: 'app',
@@ -19,17 +19,17 @@ export default {
     return {
     }
   },
-/*  computed:{
-    count(){
-      return this.$store.state.count + 1
-    }
-  }*/
-/*  computed:mapState({
-    count:state=>state.count  //  可以进行计算
-  }),*/
-  computed:mapState([
+  computed:{
+    ...mapState([
       'count'  //  不进行计算，直接输出
-  ]),
+    ]),
+  /*  count(){
+      return this.$store.getters.count
+    }*/
+    ...mapGetters([
+      'count'
+    ])
+  },
   methods:mapMutations([
       'jia',
       'jian'
