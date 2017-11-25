@@ -42,3 +42,28 @@ export default new Vuex.Store({
     getters,
     actions
 })
+
+/**
+ * 这是modules写法，用管理很多模块数据，非大型项目不建议用，容易乱
+ */
+
+/*const moduleA = {
+    state,
+    mutations,
+    getters,
+    actions
+}
+
+// 假设B是从外面引入过来的
+const moduleB = {
+    state:{count:99}
+}
+
+export default new Vuex.Store({
+    modules:{
+        a:moduleA,
+        b:moduleB
+    }
+
+})*/
+

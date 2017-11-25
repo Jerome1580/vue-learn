@@ -1,6 +1,9 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
+    <!-- 这是modules的写法 -->
+    <!-- <div>{{ $store.state.a.count }} - {{ $store.state.b.count }}</div> -->
+
     <div>{{ $store.state.count }} - {{ count }}</div>
     <p>
       <button @click="$store.commit('jia',{a:10})"> + </button>
