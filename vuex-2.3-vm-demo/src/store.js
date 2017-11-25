@@ -24,8 +24,21 @@ const getters = {
     }
 }
 
+const actions = {
+    jiaplus(context){
+        context.commit('jia',{a:1});
+        setTimeout(()=>{
+             context.commit('jian')
+        }, 3000);
+    },
+    jianplus({commit}){
+        commit('jian')
+    }
+}
+
 export default new Vuex.Store({
     state,
     mutations,
-    getters
+    getters,
+    actions
 })

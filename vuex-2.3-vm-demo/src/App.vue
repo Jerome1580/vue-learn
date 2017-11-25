@@ -6,34 +6,47 @@
       <button @click="$store.commit('jia',{a:10})"> + </button>
       <button @click="jian"> - </button>
     </p>
+    <p>
+      <button @click="jiaplus"> +plus </button>
+      <button @click="jianplus"> -plus </button>
+    </p>
     <router-view/>
   </div>
 </template>
 
 <script>
-import {mapState,mapMutations,mapGetters} from 'vuex'
+import {mapState,mapMutations,mapGetters,mapActions} from 'vuex'
 
 export default {
   name: 'app',
   data(){
     return {
+      count:0
     }
   },
-  computed:{
+/*  computed:{
     ...mapState([
       'count'  //  不进行计算，直接输出
     ]),
-  /*  count(){
+    count(){
       return this.$store.getters.count
-    }*/
+    }
     ...mapGetters([
       'count'
     ])
-  },
-  methods:mapMutations([
-      'jia',
-      'jian'
-  ])
+  },*/
+  methods:{
+      ...mapMutations([
+        'jia',
+        'jian'
+      ]),
+      ...mapActions([
+        'jiaplus',
+      ]),
+      ...mapActions({
+        jianplus:'jianplus'
+      })
+  }
 }
 </script>
 
