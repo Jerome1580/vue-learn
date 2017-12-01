@@ -16,5 +16,6 @@ export default new Router({
         {path:'/follow',component:FollowView},
         {path:'/column',component:ColumnView},
         {path:'/user-info',component:UserInfo},
+        {path:'/',redirect:'/home'}
     ]
 })
