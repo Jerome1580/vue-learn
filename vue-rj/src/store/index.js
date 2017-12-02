@@ -1,24 +1,14 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import mutations from './mutations.js'
+import actions from './actions.js'
+
 Vue.use(Vuex);
 
-const state = {
-    headShow:false
-}
-
-const mutations = {
-    showHead(state){
-        alert(1)
-        state.headShow = true
-    },
-    hideHead(state){
-        alert(2)
-        state.headShow = false
-    },
-}
-
 export default new Vuex.Store({
-    state,
-    mutations
+    modules: {
+        mutations
+    },
+    actions,
 })

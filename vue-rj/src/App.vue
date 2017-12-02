@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import {mapState,mapMutations} from 'vuex'
+import {mapGetters,mapMutations} from 'vuex'
 
 import NavView from '@/components/Nav.vue'
 import FooterView from '@/components/Footer.vue'
@@ -22,9 +22,9 @@ export default {
     }
   },
   computed:{
-    ...mapState({
-
-     })
+    ...mapGetters([
+        'headShow'
+    ])
   },
   components:{
     NavView,
@@ -33,9 +33,11 @@ export default {
   watch:{
     $route(to,from){
       if(to.path == '/user-info'){
-        this.hideHead()
+         this.$store.dispatch('hideHead')
       }else{
-        this.showHead()
+        this.$store.dispatch('showHead',{
+          a:10
+        })
       }
     }
   },
