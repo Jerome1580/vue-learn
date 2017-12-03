@@ -9,7 +9,7 @@
             <div class="header clear"><h2><img src="http://localhost:8080/src/assets/img/head.png" alt=""/></h2><p>jerome</p></div>
             <div class="cont">
                 <h3>{{ articleDetail.title }}</h3>
-                <div class="time"><p>2016-9-25 12:49:16 <span><img src="http://localhost:8080/src/assets/img/zan.png" alt=""/></span></p></div>
+                <div class="time"><p>{{ articleDetail.time | normalTime }}<span><img src="http://localhost:8080/src/assets/img/zan.png" alt=""/></span></p></div>
                 <div class="text-box" v-html="articleDetail.content">
 
                 </div>
