@@ -5,10 +5,10 @@
             <div class="newsList">
               <ul>
                     <li v-for="(content,index) in arrList">
-                      <a href="conText.html">
-                            <h2>{{ index + 1 }}.{{ content.title }}</h2>
+                     <router-link :to="{path:'/article',query:{id:index}}">
+                          <h2>{{ index + 1 }}.{{ content.title }}</h2>
                             <p>{{ content.detail }}</p>
-                        </a>
+                     </router-link>
                     </li>
 
                 </ul>
