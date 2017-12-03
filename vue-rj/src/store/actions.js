@@ -1,4 +1,4 @@
-import {HEAD} from './types.js'
+import {HEAD,CustomComponents} from './types.js'
 
 export default {
     showHead:({commit})=>{
@@ -6,5 +6,11 @@ export default {
     },
     hideHead:({commit})=>{
         commit(HEAD.hideHead)
+    },
+    showLoading:({commit})=>{
+        commit(CustomComponents.showLoading)
+    },
+    hideLoading:({commit})=>{
+        commit(CustomComponents.hideLoading)
     }
 }

@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Loading v-show="showLoading"></Loading>
     <NavView v-show="headShow"></NavView>
     <transition name="fade" mode="out-in">
         <router-view></router-view>
@@ -9,7 +10,7 @@
 </template>
 
 <script>
-import {mapGetters,mapMutations} from 'vuex'
+import {mapGetters,mapActions} from 'vuex'
 
 import NavView from '@/components/Nav.vue'
 import FooterView from '@/components/Footer.vue'
@@ -23,7 +24,8 @@ export default {
   },
   computed:{
     ...mapGetters([
-        'headShow'
+        'headShow',
+        'showLoading'
     ])
   },
   components:{
@@ -42,7 +44,7 @@ export default {
     }
   },
   methods:{
-    ...mapMutations([
+    ...mapActions([
         'showHead',
         'hideHead'
     ])
